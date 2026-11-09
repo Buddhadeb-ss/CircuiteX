@@ -1,0 +1,12 @@
+\begin{circuitikz}
+  \draw (0,0) node[nmos] (M) {};
+  \draw (M.D) to[short] ++(0,1.5) coordinate(vdd) node[vcc]{$V_{DD}$};
+  \draw (M.S) to[short] ++(0,-0.4) coordinate(s_tap);
+  \draw (s_tap) to[R=<<RS>>] ++(0,-2.0) node[ground]{};
+  \draw (s_tap) to[short, *-o] ++(1.6,0) node[right]{$V_\mathrm{out}$};
+  
+  \draw (M.G) -- ++(-0.8,0) coordinate(g);
+  \draw (g) to[R=<<RG1>>] (g |- vdd) -- (vdd);
+  \draw (g) to[R=<<RG2>>] ++(0,-2.4) node[ground]{};
+  \draw (g) to[C=<<Cin>>, *-o] ++(-2.2,0) node[left]{$V_\mathrm{in}$};
+\end{circuitikz}

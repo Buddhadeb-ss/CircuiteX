@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "CMOS Digital Inverter",
+    "subject": "Digital Integrated Circuits",
+    "author": "Buddhadeb",
+    "references": ["sedra-smith", "mano-digital"]
+  },
+  "sections": [
+    {
+      "heading": "Architecture & Static Characteristics",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Complementary MOS (CMOS) Inverter",
+          "body": "The standard building block of digital VLSI circuits, consisting of a pull-up PMOS network and a pull-down NMOS network with shared input gates and tied drain outputs. Exhibits negligible static power dissipation and rail-to-rail output swing."
+        },
+        {
+          "type": "circuit",
+          "snippet": "cmos-inverter",
+          "params": {
+            "MP": "$M_P$",
+            "MN": "$M_N$"
+          },
+          "scale": 0.9,
+          "caption": "Static CMOS inverter schematic"
+        },
+        {
+          "type": "formula",
+          "title": "Dynamic Power Dissipation",
+          "tex": "P_\\mathrm{dyn} = C_L V_{DD}^2 f",
+          "note": "Where $C_L$ is the total load capacitance, $V_{DD}$ is the supply voltage, and $f$ is the switching frequency."
+        }
+      ]
+    },
+    {
+      "heading": "Hardware Description (HDL)",
+      "blocks": [
+        {
+          "type": "code",
+          "title": "Verilog HDL Implementation",
+          "code": "module cmos_inverter (\n    input  wire in,\n    output wire out\n);\n    assign out = ~in;\nendmodule"
+        },
+        {
+          "type": "warning",
+          "title": "Short-Circuit Power During Transitions",
+          "body": "During switching, both NMOS and PMOS conduct simultaneously for a brief duration when $V_{th,n} < V_{in} < V_{DD} - |V_{th,p}|$, creating a direct current spike from $V_{DD}$ to ground."
+        }
+      ]
+    },
+    {
+      "heading": "Summary & Quick Check",
+      "blocks": [
+        {
+          "type": "summary",
+          "points": [
+            "Rail-to-rail logic swing: $V_{OL} = 0\\,\\mathrm{V}$ and $V_{OH} = V_{DD}$.",
+            "Static power consumption is practically zero, dominated only by reverse leakage current.",
+            "Dynamic power dissipation scales quadratically with supply voltage $V_{DD}$."
+          ]
+        },
+        {
+          "type": "check",
+          "questions": [
+            "Why must PMOS width $W_p$ typically be 2 to 3 times larger than NMOS width $W_n$ for symmetric propagation delays?",
+            "How does reducing supply voltage $V_{DD}$ affect propagation delay versus energy efficiency?"
+          ]
+        }
+      ]
+    }
+  ]
+}

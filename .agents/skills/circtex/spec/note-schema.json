@@ -20,8 +20,9 @@
     "warning":    {"required": ["body"],             "optional": ["title"]},
     "list":       {"required": ["items"],            "optional": ["title", "ordered"]},
     "table":      {"required": ["columns", "rows"],  "optional": ["caption"]},
-    "circuit":    {"required": [],                   "optional": ["snippet", "params", "custom", "caption"],
-                   "notes": "Give exactly one of 'snippet' (id from library/circuits.json, optional 'params') or 'custom' (raw circuitikz body)."},
+    "circuit":    {"required": [],                   "optional": ["snippet", "params", "custom", "caption", "scale"],
+                   "notes": "Give exactly one of 'snippet' (id from library/circuits.json, optional 'params') or 'custom' (raw circuitikz body). 'scale' adjusts diagram sizing (e.g. 0.85)."},
+    "code":       {"required": ["code"],             "optional": ["language", "title", "caption"]},
     "summary":    {"required": ["points"],           "optional": ["title"]},
     "check":      {"required": ["questions"],        "optional": ["title"]}
   }

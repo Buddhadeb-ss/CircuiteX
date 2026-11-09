@@ -1,0 +1,15 @@
+\begin{circuitikz}
+  \draw (0,1.4) node[pmos] (Mp) {} node[right=0.2cm]{<<MP>>};
+  \draw (0,-1.4) node[nmos] (Mn) {} node[right=0.2cm]{<<MN>>};
+  
+  \draw (Mp.S) to[short] ++(0,0.8) node[vcc]{$V_{DD}$};
+  \draw (Mn.S) to[short] ++(0,-0.8) node[ground]{};
+  
+  \draw (Mp.D) -- (Mn.D);
+  \path (Mp.D) -- (Mn.D) coordinate[midway] (d_mid);
+  \draw (d_mid) node[circ]{} to[short, -o] ++(1.4,0) node[right]{$V_\mathrm{out}$};
+  
+  \draw (Mp.G) -- (Mn.G);
+  \path (Mp.G) -- (Mn.G) coordinate[midway] (g_mid);
+  \draw (g_mid) node[circ]{} to[short, -o] ++(-1.4,0) node[left]{$V_\mathrm{in}$};
+\end{circuitikz}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package the circtex skill into a distributable .skill (zip) bundle.
+"""Package the CircuiteX (circtex) skill into a distributable .skill (zip) bundle.
 
 Usage: python scripts/package_skill.py [--out PATH]
 """
@@ -27,6 +27,7 @@ def package_skill(output_path=None):
         "library/circuits.json",
         "library/components.json",
         "scripts/build.py",
+        "scripts/setup_compiler.py",
         "scripts/package_skill.py",
     ]
 
@@ -47,7 +48,6 @@ def package_skill(output_path=None):
             if not file_on_disk.exists():
                 print(f"Warning: {file_on_disk} does not exist, skipping.")
                 continue
-            # Store in archive with circtex/ prefix for clean unzipping
             arcname = f"circtex/{rel_path}"
             zf.write(file_on_disk, arcname=arcname)
             print(f"  + {arcname}")

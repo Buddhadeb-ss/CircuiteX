@@ -1,0 +1,10 @@
+\begin{circuitikz}
+  \draw (0,0) node[draw, rectangle, minimum width=2.4cm, minimum height=3.2cm, thick] (IC) {NE555};
+  \draw (IC.north) to[short] ++(0,0.6) coordinate(vcc) node[vcc]{$V_{CC}$};
+  \draw (IC.south) to[short] ++(0,-0.6) node[ground]{};
+  \draw (IC.east) to[short, -o] ++(1.4,0) node[right]{$V_\mathrm{out}$};
+  \draw (IC.west) to[short] ++(-0.8,0) coordinate(trig);
+  \draw (trig) to[C=<<C>>] ++(0,-1.6) node[ground]{};
+  \draw (trig) to[R=<<RB>>, *-] ++(0,1.8) coordinate(dis);
+  \draw (dis) to[R=<<RA>>] (dis |- vcc) -- (vcc);
+\end{circuitikz}

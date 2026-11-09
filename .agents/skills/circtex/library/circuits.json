@@ -31,10 +31,46 @@
       "topics": ["op-amp"],
       "source": "mancini-opamps"
     },
+    "summing-amplifier": {
+      "title": "Inverting summing amplifier",
+      "params": {"R1": "$R_1$", "R2": "$R_2$", "R3": "$R_3$", "Rf": "$R_f$"},
+      "topics": ["op-amp", "amplifier"],
+      "source": "mancini-opamps"
+    },
+    "difference-amplifier": {
+      "title": "Difference amplifier",
+      "params": {"R1": "$R_1$", "R2": "$R_2$", "R3": "$R_3$", "R4": "$R_4$"},
+      "topics": ["op-amp", "amplifier"],
+      "source": "mancini-opamps"
+    },
+    "opamp-integrator": {
+      "title": "Op-amp inverting integrator",
+      "params": {"R1": "$R_1$", "Cf": "$C_f$"},
+      "topics": ["op-amp", "filters"],
+      "source": "sedra-smith"
+    },
+    "opamp-differentiator": {
+      "title": "Op-amp inverting differentiator",
+      "params": {"C1": "$C_1$", "Rf": "$R_f$"},
+      "topics": ["op-amp"],
+      "source": "sedra-smith"
+    },
+    "schmitt-trigger": {
+      "title": "Inverting op-amp Schmitt trigger",
+      "params": {"R1": "$R_1$", "R2": "$R_2$"},
+      "topics": ["op-amp", "comparator"],
+      "source": "sedra-smith"
+    },
     "common-emitter": {
       "title": "Common-emitter BJT amplifier (voltage-divider bias)",
       "params": {"R1": "$R_1$", "R2": "$R_2$", "RC": "$R_C$", "RE": "$R_E$", "Cin": "$C_\\mathrm{in}$"},
       "topics": ["bjt", "amplifier"],
+      "source": "sedra-smith"
+    },
+    "bjt-common-collector": {
+      "title": "Common-collector BJT buffer (emitter follower)",
+      "params": {"R1": "$R_1$", "R2": "$R_2$", "RE": "$R_E$", "Cin": "$C_\\mathrm{in}$"},
+      "topics": ["bjt", "buffer", "amplifier"],
       "source": "sedra-smith"
     },
     "mosfet-common-source": {
@@ -43,10 +79,46 @@
       "topics": ["mosfet", "amplifier"],
       "source": "sedra-smith"
     },
-    "schmitt-trigger": {
-      "title": "Inverting op-amp Schmitt trigger",
-      "params": {"R1": "$R_1$", "R2": "$R_2$"},
-      "topics": ["op-amp", "comparator"],
+    "mosfet-source-follower": {
+      "title": "MOSFET common-drain buffer (source follower)",
+      "params": {"RG1": "$R_{G1}$", "RG2": "$R_{G2}$", "RS": "$R_S$", "Cin": "$C_\\mathrm{in}$"},
+      "topics": ["mosfet", "buffer", "amplifier"],
+      "source": "razavi-analog"
+    },
+    "rlc-bandpass": {
+      "title": "Series RLC band-pass filter",
+      "params": {"L": "$L$", "C": "$C$", "R": "$R$"},
+      "topics": ["rlc", "filters"],
+      "source": "alexander-sadiku"
+    },
+    "half-wave-rectifier": {
+      "title": "Half-wave diode rectifier with capacitive filter",
+      "params": {"D1": "$D_1$", "CL": "$C_L$", "RL": "$R_L$"},
+      "topics": ["diode", "power"],
+      "source": "sedra-smith"
+    },
+    "full-wave-bridge-rectifier": {
+      "title": "Full-wave diode bridge rectifier",
+      "params": {"D1": "$D_1$", "D2": "$D_2$", "D3": "$D_3$", "D4": "$D_4$", "RL": "$R_L$"},
+      "topics": ["diode", "power"],
+      "source": "sedra-smith"
+    },
+    "cmos-inverter": {
+      "title": "Complementary MOS (CMOS) digital inverter",
+      "params": {"MP": "$M_P$", "MN": "$M_N$"},
+      "topics": ["digital"],
+      "source": "sedra-smith"
+    },
+    "zener-voltage-regulator": {
+      "title": "Zener diode shunt voltage regulator",
+      "params": {"Rs": "$R_s$", "DZ": "$D_Z$", "RL": "$R_L$"},
+      "topics": ["diode"],
+      "source": "sedra-smith"
+    },
+    "555-astable": {
+      "title": "NE555 timer in astable multivibrator mode",
+      "params": {"RA": "$R_A$", "RB": "$R_B$", "C": "$C$"},
+      "topics": ["practical"],
       "source": "sedra-smith"
     }
   }

@@ -1,0 +1,9 @@
+\begin{circuitikz}
+  \draw (0,0) to[sV=$v_s(t)$] (0,2.2)
+        to[D=<<D1>>] (2.8,2.2) coordinate(tap);
+  \draw (tap) to[C=<<CL>>] (2.8,0);
+  \draw (tap) to[short, *-] (4.8,2.2) coordinate(load)
+        to[R=<<RL>>] (4.8,0);
+  \draw (load) to[short, *-o] ++(1.2,0) node[right]{$V_\mathrm{out}$};
+  \draw (0,0) -- (4.8,0) node[ground]{};
+\end{circuitikz}

@@ -1,23 +1,41 @@
 {
   "_help": "Trusted references per topic. Claude takes facts (formulas, behaviour, typical values) ONLY from these when the topic is covered. Add or edit freely. If a topic is not covered, Claude says so instead of guessing from random pages.",
   "sources": {
-    "mancini-opamps":    {"topics": ["op-amp", "amplifier", "feedback", "filters", "comparator"],
-                          "cite": "R. Mancini (ed.), Op Amps for Everyone, Texas Instruments (SLOD006)"},
-    "sedra-smith":       {"topics": ["op-amp", "bjt", "mosfet", "diode", "amplifier", "analog", "comparator", "schmitt-trigger"],
-                          "cite": "A. S. Sedra and K. C. Smith, Microelectronic Circuits, Oxford University Press"},
-    "razavi-analog":     {"topics": ["bjt", "mosfet", "amplifier", "analog"],
-                          "cite": "B. Razavi, Fundamentals of Microelectronics, Wiley"},
-    "horowitz-hill":     {"topics": ["practical", "op-amp", "bjt", "power", "noise"],
-                          "cite": "P. Horowitz and W. Hill, The Art of Electronics, Cambridge University Press"},
-    "alexander-sadiku":  {"topics": ["network-analysis", "rc", "rl", "rlc", "ac", "transients", "filters"],
-                          "cite": "C. K. Alexander and M. N. O. Sadiku, Fundamentals of Electric Circuits, McGraw-Hill"},
-    "mano-digital":      {"topics": ["digital", "logic", "gates", "flip-flop"],
-                          "cite": "M. M. Mano and M. D. Ciletti, Digital Design, Pearson"},
-    "oppenheim-signals": {"topics": ["signals", "systems", "fourier", "laplace"],
-                          "cite": "A. V. Oppenheim and A. S. Willsky, Signals and Systems, Pearson"},
-    "component-datasheet": {"topics": ["specific-part"],
-                          "cite": "Manufacturer datasheet for the exact part (cite part number and revision)"},
-    "circuitikz-manual": {"topics": ["latex", "circuitikz"],
-                          "cite": "CircuiTikZ manual, CTAN: https://ctan.org/pkg/circuitikz"}
+    "mancini-opamps": {
+      "topics": ["op-amp", "amplifier", "feedback", "filters", "comparator", "math-circuits", "differential"],
+      "cite": "R. Mancini (ed.), Op Amps for Everyone, Texas Instruments (SLOD006)"
+    },
+    "sedra-smith": {
+      "topics": ["op-amp", "bjt", "mosfet", "diode", "amplifier", "analog", "comparator", "schmitt-trigger", "filters", "digital", "power", "practical", "buffer"],
+      "cite": "A. S. Sedra and K. C. Smith, Microelectronic Circuits, Oxford University Press"
+    },
+    "razavi-analog": {
+      "topics": ["bjt", "mosfet", "amplifier", "analog", "buffer"],
+      "cite": "B. Razavi, Fundamentals of Microelectronics, Wiley"
+    },
+    "horowitz-hill": {
+      "topics": ["practical", "op-amp", "bjt", "power", "noise", "timer"],
+      "cite": "P. Horowitz and W. Hill, The Art of Electronics, Cambridge University Press"
+    },
+    "alexander-sadiku": {
+      "topics": ["network-analysis", "rc", "rl", "rlc", "ac", "transients", "filters"],
+      "cite": "C. K. Alexander and M. N. O. Sadiku, Fundamentals of Electric Circuits, McGraw-Hill"
+    },
+    "mano-digital": {
+      "topics": ["digital", "logic", "gates", "flip-flop"],
+      "cite": "M. M. Mano and M. D. Ciletti, Digital Design, Pearson"
+    },
+    "oppenheim-signals": {
+      "topics": ["signals", "systems", "fourier", "laplace"],
+      "cite": "A. V. Oppenheim and A. S. Willsky, Signals and Systems, Pearson"
+    },
+    "component-datasheet": {
+      "topics": ["specific-part"],
+      "cite": "Manufacturer datasheet for the exact part (cite part number and revision)"
+    },
+    "circuitikz-manual": {
+      "topics": ["latex", "circuitikz"],
+      "cite": "CircuiTikZ manual, CTAN: https://ctan.org/pkg/circuitikz"
+    }
   }
 }

@@ -1,0 +1,8 @@
+\begin{circuitikz}
+  \draw (0,0) node[left]{$V_\mathrm{in}$} to[short, o-] (0.6,0)
+        to[R=<<Rs>>] (2.6,0) coordinate(tap);
+  \draw (tap) to[zD=<<DZ>>] (2.6,-2.2) node[ground]{};
+  \draw (tap) to[short, *-] (4.6,0) coordinate(load)
+        to[R=<<RL>>] (4.6,-2.2) node[ground]{};
+  \draw (load) to[short, *-o] ++(1.2,0) node[right]{$V_\mathrm{out}$};
+\end{circuitikz}

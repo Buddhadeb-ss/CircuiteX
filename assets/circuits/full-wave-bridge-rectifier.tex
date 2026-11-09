@@ -1,0 +1,15 @@
+\begin{circuitikz}
+  \draw (0,0) coordinate(ac_l)
+        to[D, l=<<D1>>] (2,2) coordinate(top)
+        to[D, l_=<<D2>>] (4,0) coordinate(ac_r)
+        to[D, l=<<D4>>] (2,-2) coordinate(bot)
+        to[D, l_=<<D3>>] (ac_l);
+  
+  \draw (ac_l) to[short, *-o] ++(-1.2,0) node[left]{$v_{ac1}$};
+  \draw (ac_r) to[short, *-o] ++(1.2,0) node[right]{$v_{ac2}$};
+
+  \draw (top) to[short, *-] ++(1.8,0) coordinate(p_out)
+        to[R=<<RL>>] (p_out |- bot) -- (bot);
+  \draw (p_out) to[short, *-o] ++(1.2,0) node[right]{$V_\mathrm{out}^+$};
+  \draw (p_out |- bot) to[short, *-o] ++(1.2,0) node[right]{$V_\mathrm{out}^-$} node[ground]{};
+\end{circuitikz}
