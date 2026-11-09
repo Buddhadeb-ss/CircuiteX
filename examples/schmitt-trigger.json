@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Op-Amp Inverting Schmitt Trigger",
+    "subject": "Non-Linear Analog Circuits",
+    "author": "Buddhadeb",
+    "references": ["sedra-smith", "mancini-opamps"]
+  },
+  "sections": [
+    {
+      "heading": "Hysteresis & Threshold Levels",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Schmitt Trigger",
+          "body": "A comparator circuit with positive feedback that exhibits hysteresis. Unlike a simple comparator, the Schmitt trigger switches thresholds depending on the current output state, preventing multiple triggering caused by input noise."
+        },
+        {
+          "type": "circuit",
+          "snippet": "schmitt-trigger",
+          "params": {
+            "R1": "$10\\,\\mathrm{k}\\Omega$",
+            "R2": "$90\\,\\mathrm{k}\\Omega$"
+          },
+          "caption": "Inverting Schmitt trigger with resistive positive feedback network"
+        },
+        {
+          "type": "formula",
+          "title": "Upper and Lower Switching Thresholds",
+          "tex": "V_{TH} = +\\frac{R_1}{R_1 + R_2} V_\\mathrm{sat}^+, \\qquad V_{TL} = -\\frac{R_1}{R_1 + R_2} |V_\\mathrm{sat}^-|",
+          "note": "Assuming symmetric saturation voltages $\\pm V_\\mathrm{sat}$, the hysteresis window width is $V_H = V_{TH} - V_{TL} = \\frac{2 R_1}{R_1 + R_2} V_\\mathrm{sat}$."
+        }
+      ]
+    },
+    {
+      "heading": "Design Calculation",
+      "blocks": [
+        {
+          "type": "example",
+          "title": "Symmetric Hysteresis Design",
+          "body": "With rail voltages providing $V_\\mathrm{sat} = \\pm 12\\,\\mathrm{V}$, choosing $R_1 = 10\\,\\mathrm{k}\\Omega$ and $R_2 = 90\\,\\mathrm{k}\\Omega$ yields a feedback factor $\\beta = \\frac{10}{10+90} = 0.1$. The switching thresholds are $V_{TH} = +1.2\\,\\mathrm{V}$ and $V_{TL} = -1.2\\,\\mathrm{V}$, yielding a noise margin hysteresis width of $V_H = 2.4\\,\\mathrm{V}$."
+        },
+        {
+          "type": "warning",
+          "title": "Op-Amp Slew Rate & Recovery",
+          "body": "Because the op-amp operates in full saturation, recovery time from saturation adds delay. For high-frequency waveform generation or fast clock recovery, use a dedicated comparator IC (e.g. LM311 or LM393) rather than a general-purpose op-amp."
+        }
+      ]
+    },
+    {
+      "heading": "Summary & Self-Assessment",
+      "blocks": [
+        {
+          "type": "table",
+          "caption": "Schmitt Trigger State Transition Table",
+          "columns": ["Current Output State", "Input Condition", "Next Output State"],
+          "rows": [
+            ["$+V_\\mathrm{sat}$", "$V_\\mathrm{in} < V_{TH}$", "$+V_\\mathrm{sat}$ (no change)"],
+            ["$+V_\\mathrm{sat}$", "$V_\\mathrm{in} > V_{TH}$", "$-V_\\mathrm{sat}$ (switches LOW)"],
+            ["$-V_\\mathrm{sat}$", "$V_\\mathrm{in} > V_{TL}$", "$-V_\\mathrm{sat}$ (no change)"],
+            ["$-V_\\mathrm{sat}$", "$V_\\mathrm{in} < V_{TL}$", "$+V_\\mathrm{sat}$ (switches HIGH)"]
+          ]
+        },
+        {
+          "type": "summary",
+          "points": [
+            "Positive feedback to the non-inverting terminal creates bistable operation and hysteresis.",
+            "Noise within the hysteresis band $V_H$ cannot trigger spurious transitions.",
+            "Inverting topology means an input exceeding $V_{TH}$ forces the output to its negative rail."
+          ]
+        },
+        {
+          "type": "check",
+          "questions": [
+            "How can the hysteresis center be shifted away from 0 V to create an asymmetric threshold?",
+            "Why does negative feedback linearize while positive feedback creates bistability?"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "_help": "Predefined circuitikz components. Use these exact forms; do not invent symbols. Edit to change style or add parts.",
+  "style": "american",
+  "components": {
+    "resistor":          {"tikz": "to[R=$R_1$]",        "note": "Label with a symbol, or a value like $10\\,\\mathrm{k}\\Omega$"},
+    "variable_resistor": {"tikz": "to[vR=$R_v$]",       "note": "Potentiometer / rheostat"},
+    "capacitor":         {"tikz": "to[C=$C_1$]",        "note": "Non-polarised"},
+    "electrolytic_cap":  {"tikz": "to[eC=$C_1$]",       "note": "Polarised"},
+    "inductor":          {"tikz": "to[L=$L_1$]"},
+    "diode":             {"tikz": "to[D=$D_1$]",        "note": "Current flows anode to cathode, left to right"},
+    "zener":             {"tikz": "to[zD=$D_Z$]"},
+    "led":               {"tikz": "to[leD=$D_1$]"},
+    "ac_source":         {"tikz": "to[sV=$V_s$]",       "note": "Sinusoidal source"},
+    "dc_source":         {"tikz": "to[V=$V_{DC}$]",     "note": "Use battery1 for a battery symbol"},
+    "current_source":    {"tikz": "to[I=$I_s$]"},
+    "switch":            {"tikz": "to[spst=$S_1$]"},
+    "npn":               {"tikz": "node[npn] (Q) {}",   "note": "Anchors: Q.B base, Q.C collector, Q.E emitter"},
+    "pnp":               {"tikz": "node[pnp] (Q) {}",   "note": "Same anchors as npn"},
+    "nmos":              {"tikz": "node[nmos] (M) {}",  "note": "Anchors: M.G gate, M.D drain, M.S source"},
+    "pmos":              {"tikz": "node[pmos] (M) {}",  "note": "Same anchors as nmos"},
+    "opamp":             {"tikz": "node[op amp] (A) {}","note": "Anchors: A.- (upper input), A.+ (lower input), A.out. Do not flip unless the circuit needs it."},
+    "ground":            {"tikz": "node[ground]{}",     "note": "Every circuit must have one"},
+    "vcc":               {"tikz": "node[vcc]{$V_{CC}$}"},
+    "and_gate":          {"tikz": "node[american and port] (G) {}", "note": "Anchors: G.in 1, G.in 2, G.out. Same pattern for or, nand, nor, xor, not ports."},
+    "junction":          {"tikz": "to[short, *-*]",     "note": "Filled dot where wires connect. Crossing wires without a dot are NOT connected."},
+    "terminal":          {"tikz": "to[short, -o]",      "note": "Open circle for an external terminal (Vin, Vout)"}
+  },
+  "layout_rules": [
+    "Place by relative offsets (++(2,0)) or named anchors, not scattered absolute coordinates.",
+    "Label every component with a symbol or a value.",
+    "Mark Vin and Vout with terminals.",
+    "Signal flows left to right, supply on top, ground at the bottom."
+  ]
+}

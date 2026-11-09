@@ -1,0 +1,10 @@
+\begin{circuitikz}
+  \draw (0,0) node[npn] (Q) {};
+  \draw (Q.C) to[R=<<RC>>] ++(0,2.2) coordinate(vcc) node[vcc]{$V_{CC}$};
+  \draw (Q.E) to[R=<<RE>>] ++(0,-2) node[ground]{};
+  \draw (Q.B) to[short, *-] ++(-0.8,0) coordinate(b);
+  \draw (b) to[R=<<R1>>] (b |- vcc) -- (vcc);
+  \draw (b) to[R=<<R2>>] ++(0,-2.4) node[ground]{};
+  \draw (b) to[C=<<Cin>>, *-o] ++(-2.2,0) node[left]{$V_\mathrm{in}$};
+  \draw (Q.C) to[short, *-o] ++(1.6,0) node[right]{$V_\mathrm{out}$};
+\end{circuitikz}

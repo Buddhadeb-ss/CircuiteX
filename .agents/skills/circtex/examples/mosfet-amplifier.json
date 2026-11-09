@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "MOSFET Common-Source Amplifier",
+    "subject": "Analog Microelectronics",
+    "author": "Buddhadeb",
+    "references": ["sedra-smith", "razavi-analog"]
+  },
+  "sections": [
+    {
+      "heading": "Circuit Architecture & Operation",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Common-Source Amplifier",
+          "body": "The Common-Source (CS) amplifier is the fundamental building block in analog MOS design, providing moderate-to-high voltage gain and high input impedance. The gate receives the input AC signal, the drain provides the amplified inverted output, and the source is tied to AC ground."
+        },
+        {
+          "type": "circuit",
+          "snippet": "mosfet-common-source",
+          "params": {
+            "RD": "$R_D$",
+            "RS": "$R_S$",
+            "RG1": "$R_{G1}$",
+            "RG2": "$R_{G2}$",
+            "Cin": "$C_\\mathrm{in}$"
+          },
+          "caption": "Discrete NMOS common-source amplifier with four-resistor resistive divider bias"
+        },
+        {
+          "type": "formula",
+          "title": "Small-Signal Voltage Gain",
+          "tex": "A_v = \\frac{v_\\mathrm{out}}{v_\\mathrm{in}} \\approx -g_m (R_D \\parallel r_o)",
+          "note": "For $r_o \\gg R_D$ with source bypassed by $C_S$, the unloaded midband gain simplifies to $A_v \\approx -g_m R_D$."
+        }
+      ]
+    },
+    {
+      "heading": "Biasing and Transconductance",
+      "blocks": [
+        {
+          "type": "formula",
+          "title": "MOS Transconductance in Saturation",
+          "tex": "g_m = \\sqrt{2 \\mu_n C_{ox} \\left(\\frac{W}{L}\\right) I_D} = \\frac{2 I_D}{V_{GS} - V_{th}} = \\mu_n C_{ox} \\left(\\frac{W}{L}\\right) (V_{GS} - V_{th})",
+          "note": "Requires operation in saturation: $V_{DS} \\ge V_{GS} - V_{th}$ and $V_{GS} > V_{th}$."
+        },
+        {
+          "type": "example",
+          "title": "Gain Calculation Example",
+          "body": "Given $I_D = 1.0\\,\\mathrm{mA}$, $k_n' (W/L) = 8\\,\\mathrm{mA/V^2}$, $R_D = 4.7\\,\\mathrm{k}\\Omega$, and $\\lambda \\approx 0$ ($r_o \\to \\infty$). The transconductance is $g_m = \\sqrt{2 \\times 8 \\times 1} = 4\\,\\mathrm{mA/V} = 4\\,\\mathrm{mS}$. Therefore, the small-signal gain is $A_v = -g_m R_D = -(4\\times 10^{-3})(4.7\\times 10^3) = -18.8\\,\\mathrm{V/V}$."
+        },
+        {
+          "type": "warning",
+          "title": "Saturation Constraint & Clipping",
+          "body": "Ensure the DC drain voltage satisfies $V_D > V_G - V_{th}$ at all times. A large output negative swing can push the transistor out of saturation into the triode region, causing severe harmonic distortion."
+        }
+      ]
+    },
+    {
+      "heading": "Summary & Quick Check",
+      "blocks": [
+        {
+          "type": "table",
+          "caption": "MOS Single-Stage Amplifier Comparison",
+          "columns": ["Topology", "Input Impedance", "Output Impedance", "Voltage Gain $A_v$"],
+          "rows": [
+            ["Common-Source", "High ($\\infty$ at DC)", "Moderate ($R_D \\parallel r_o$)", "Medium to High ($-g_m R_D$)"],
+            ["Common-Gate", "Low ($1/g_m$)", "Moderate ($R_D \\parallel r_o$)", "Medium ($+g_m R_D$, non-inverting)"],
+            ["Source-Follower (CD)", "High ($\\infty$ at DC)", "Low ($1/g_m$)", "$\\approx +1$ (Buffer)"]
+          ]
+        },
+        {
+          "type": "summary",
+          "points": [
+            "Common-Source configuration produces a $180^\\circ$ phase shift between input and output.",
+            "Input gate resistance is virtually infinite at low-to-medium frequencies due to the oxide layer.",
+            "Voltage gain is proportional to transconductance $g_m$ and drain load resistance $R_D$."
+          ]
+        },
+        {
+          "type": "check",
+          "questions": [
+            "What happens to the small-signal gain if source resistor $R_S$ is unbypassed?",
+            "How does channel length modulation parameter $\\lambda$ affect the maximum attainable gain?"
+          ]
+        }
+      ]
+    }
+  ]
+}

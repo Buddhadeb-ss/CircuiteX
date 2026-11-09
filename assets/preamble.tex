@@ -1,0 +1,52 @@
+\documentclass[<<font_size>>,<<paper>>]{article}
+\usepackage[margin=<<margin>>]{geometry}
+\usepackage[T1]{fontenc}
+<<font_setup>>
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{positioning,calc,arrows.meta}
+\usepackage[<<style>>]{circuitikz}
+\usepackage{tikz-timing}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+<<color_defs>>
+
+\ctikzset{bipoles/length=1.2cm}
+\tikzset{every picture/.style={line cap=round}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\setlist{itemsep=0.2em,topsep=0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{accent}<<header_text>>}
+\fancyhead[R]{\small\color{accent}<<title>>}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{accent}\leaders\hrule height \headrulewidth\hfill}}
+
+% ---- note boxes (each takes optional [title={...}]) ----
+\newtcolorbox{defbox}[1][]{enhanced,breakable,colback=definition!5,colframe=definition,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+\newtcolorbox{formulabox}[1][]{enhanced,breakable,colback=formula!5,colframe=formula,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+\newtcolorbox{warnbox}[1][]{enhanced,breakable,colback=warning!5,colframe=warning,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+\newtcolorbox{examplebox}[1][]{enhanced,breakable,colback=example!5,colframe=example,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+\newtcolorbox{summarybox}[1][]{enhanced,breakable,colback=summary!5,colframe=summary,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+\newtcolorbox{checkbox}[1][]{enhanced,breakable,colback=check!5,colframe=check,
+  fonttitle=\bfseries,coltitle=white,boxrule=0.6pt,arc=2pt,left=6pt,right=6pt,#1}
+
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection}{0.6em}{}[\color{accent}\titlerule]

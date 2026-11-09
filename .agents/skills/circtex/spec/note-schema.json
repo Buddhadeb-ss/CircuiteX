@@ -1,0 +1,28 @@
+{
+  "_help": "Defines what a note spec may contain. 'required' fields must be present, 'optional' may be omitted. To add a block type: add it here AND add a renderer in scripts/build.py (RENDERERS).",
+  "meta": {
+    "required": ["title"],
+    "optional": ["subject", "author", "date", "references"],
+    "notes": {
+      "date": "Omit or 'auto' for today's date, or any text",
+      "references": "List of keys from library/sources.json, printed as a References box at the end"
+    }
+  },
+  "section": {
+    "required": ["heading", "blocks"],
+    "optional": []
+  },
+  "blocks": {
+    "text":       {"required": ["body"],             "optional": []},
+    "definition": {"required": ["title", "body"],    "optional": []},
+    "formula":    {"required": ["tex"],              "optional": ["title", "note"]},
+    "example":    {"required": ["body"],             "optional": ["title"]},
+    "warning":    {"required": ["body"],             "optional": ["title"]},
+    "list":       {"required": ["items"],            "optional": ["title", "ordered"]},
+    "table":      {"required": ["columns", "rows"],  "optional": ["caption"]},
+    "circuit":    {"required": [],                   "optional": ["snippet", "params", "custom", "caption"],
+                   "notes": "Give exactly one of 'snippet' (id from library/circuits.json, optional 'params') or 'custom' (raw circuitikz body)."},
+    "summary":    {"required": ["points"],           "optional": ["title"]},
+    "check":      {"required": ["questions"],        "optional": ["title"]}
+  }
+}

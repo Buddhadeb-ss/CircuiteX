@@ -1,0 +1,13 @@
+{
+  "name": "circtex",
+  "displayName": "CircuiteX",
+  "version": "1.0.0",
+  "description": "Publication-quality LaTeX study notes and circuitikz schematics compiler for ECE students and engineers.",
+  "author": "Buddhadeb",
+  "repository": "https://github.com/Buddhadeb-ss/CircuiteX",
+  "suggestedPrompts": [
+    "Create LaTeX study notes for an inverting op-amp amplifier with circuit schematic",
+    "Generate MOSFET common-source amplifier revision sheet with circuitikz and gain formulas",
+    "Build an op-amp Schmitt trigger study note with hysteresis calculation and circuit diagram"
+  ]
+}

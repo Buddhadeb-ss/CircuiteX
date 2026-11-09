@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "Passive First-Order RC Filters",
+    "subject": "Circuit Theory & Network Analysis",
+    "author": "Buddhadeb",
+    "references": ["alexander-sadiku"]
+  },
+  "sections": [
+    {
+      "heading": "Low-Pass and High-Pass Networks",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "First-Order RC Filter",
+          "body": "A passive filter formed by a single resistor and capacitor. When output is taken across the capacitor, it forms a low-pass filter (LPF); when taken across the resistor, it forms a high-pass filter (HPF)."
+        },
+        {
+          "type": "circuit",
+          "snippet": "rc-lowpass",
+          "params": {"R": "$1\\,\\mathrm{k}\\Omega$", "C": "$100\\,\\mathrm{nF}$"},
+          "caption": "First-order passive RC low-pass filter ($f_c \\approx 1.59\\,\\mathrm{kHz}$)"
+        },
+        {
+          "type": "formula",
+          "title": "Cutoff Frequency & Transfer Function",
+          "tex": "f_c = \\frac{1}{2\\pi R C}, \\qquad H_{LP}(j\\omega) = \\frac{1}{1 + j\\omega R C}",
+          "note": "At cutoff frequency $\\omega_c = 1/(RC)$, the gain is $-3\\,\\mathrm{dB}$ ($1/\\sqrt{2} \\approx 0.707$) and phase shift is $-45^\\circ$."
+        }
+      ]
+    },
+    {
+      "heading": "High-Pass Configuration",
+      "blocks": [
+        {
+          "type": "circuit",
+          "snippet": "rc-highpass",
+          "params": {"C": "$100\\,\\mathrm{nF}$", "R": "$1\\,\\mathrm{k}\\Omega$"},
+          "caption": "First-order passive RC high-pass filter ($f_c \\approx 1.59\\,\\mathrm{kHz}$)"
+        },
+        {
+          "type": "formula",
+          "title": "High-Pass Transfer Function",
+          "tex": "H_{HP}(j\\omega) = \\frac{j\\omega R C}{1 + j\\omega R C} = \\frac{j(\\omega/\\omega_c)}{1 + j(\\omega/\\omega_c)}",
+          "note": "Roll-off slope is $+20\\,\\mathrm{dB/decade}$ in the stopband below cutoff."
+        }
+      ]
+    },
+    {
+      "heading": "Summary & Quick Check",
+      "blocks": [
+        {
+          "type": "summary",
+          "points": [
+            "Cutoff frequency is independent of whether the circuit is configured as LPF or HPF.",
+            "Passband attenuation is $0\\,\\mathrm{dB}$ for ideal passive loading; real loads reduce passband gain.",
+            "Single-pole roll-off slope is always $\\pm 20\\,\\mathrm{dB/decade}$ (or $\\pm 6\\,\\mathrm{dB/octave}$)."
+          ]
+        },
+        {
+          "type": "check",
+          "questions": [
+            "What is the total phase shift of a first-order low-pass filter at frequencies far above cutoff?",
+            "What happens to the cutoff frequency if a finite load resistance $R_L$ is placed across the capacitor?"
+          ]
+        }
+      ]
+    }
+  ]
+}

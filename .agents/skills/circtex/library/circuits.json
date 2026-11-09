@@ -1,0 +1,53 @@
+{
+  "_help": "Ready-made circuits. Reference by id in a note's circuit block: {\"type\":\"circuit\",\"snippet\":\"rc-lowpass\",\"params\":{\"R\":\"$10\\\\,\\\\mathrm{k}\\\\Omega$\"}}. Params default to the symbols below. Add a new circuit = drop a .tex in assets/circuits/ using <<param>> placeholders and register it here.",
+  "circuits": {
+    "rc-lowpass": {
+      "title": "RC low-pass filter",
+      "params": {"R": "$R$", "C": "$C$"},
+      "topics": ["rc", "filters"],
+      "source": "alexander-sadiku"
+    },
+    "rc-highpass": {
+      "title": "RC high-pass filter",
+      "params": {"C": "$C$", "R": "$R$"},
+      "topics": ["rc", "filters"],
+      "source": "alexander-sadiku"
+    },
+    "voltage-divider": {
+      "title": "Resistive voltage divider",
+      "params": {"R1": "$R_1$", "R2": "$R_2$"},
+      "topics": ["network-analysis"],
+      "source": "alexander-sadiku"
+    },
+    "inverting-opamp": {
+      "title": "Inverting op-amp amplifier",
+      "params": {"R1": "$R_1$", "Rf": "$R_f$"},
+      "topics": ["op-amp"],
+      "source": "mancini-opamps"
+    },
+    "noninverting-opamp": {
+      "title": "Non-inverting op-amp amplifier",
+      "params": {"R1": "$R_1$", "Rf": "$R_f$"},
+      "topics": ["op-amp"],
+      "source": "mancini-opamps"
+    },
+    "common-emitter": {
+      "title": "Common-emitter BJT amplifier (voltage-divider bias)",
+      "params": {"R1": "$R_1$", "R2": "$R_2$", "RC": "$R_C$", "RE": "$R_E$", "Cin": "$C_\\mathrm{in}$"},
+      "topics": ["bjt", "amplifier"],
+      "source": "sedra-smith"
+    },
+    "mosfet-common-source": {
+      "title": "MOSFET common-source amplifier (voltage-divider bias)",
+      "params": {"RD": "$R_D$", "RS": "$R_S$", "RG1": "$R_{G1}$", "RG2": "$R_{G2}$", "Cin": "$C_\\mathrm{in}$"},
+      "topics": ["mosfet", "amplifier"],
+      "source": "sedra-smith"
+    },
+    "schmitt-trigger": {
+      "title": "Inverting op-amp Schmitt trigger",
+      "params": {"R1": "$R_1$", "R2": "$R_2$"},
+      "topics": ["op-amp", "comparator"],
+      "source": "sedra-smith"
+    }
+  }
+}

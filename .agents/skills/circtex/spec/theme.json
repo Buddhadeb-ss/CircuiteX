@@ -1,0 +1,17 @@
+{
+  "_help": "Edit these to change the look of every note. Colors are hex without #.",
+  "font_setup": "\\usepackage{mathpazo}",
+  "font_size": "11pt",
+  "paper": "a4paper",
+  "margin": "2cm",
+  "header_text": "Study Notes",
+  "colors": {
+    "accent": "1F4E79",
+    "definition": "1F6FB2",
+    "formula": "2E8B57",
+    "warning": "C0392B",
+    "example": "B9770E",
+    "summary": "5B2C83",
+    "check": "117A8B"
+  }
+}

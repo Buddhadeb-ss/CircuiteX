@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "title": "Inverting Op-Amp Amplifier",
+    "subject": "Analog Electronics",
+    "author": "Buddhadeb",
+    "references": ["mancini-opamps", "sedra-smith"]
+  },
+  "sections": [
+    {
+      "heading": "Concept",
+      "blocks": [
+        {"type": "definition", "title": "Inverting amplifier",
+         "body": "An op-amp configuration where the input drives the inverting terminal through $R_1$, feedback $R_f$ connects output to that terminal, and the non-inverting terminal is grounded."},
+        {"type": "circuit", "snippet": "inverting-opamp"},
+        {"type": "formula", "title": "Closed-loop gain",
+         "tex": "A_v = \\frac{V_\\mathrm{out}}{V_\\mathrm{in}} = -\\frac{R_f}{R_1}",
+         "note": "Derived from the virtual ground at the inverting input (ideal op-amp)."}
+      ]
+    },
+    {
+      "heading": "Worked example",
+      "blocks": [
+        {"type": "example", "title": "Gain of $-10$",
+         "body": "Choose $R_1 = 10\\,\\mathrm{k}\\Omega$ and $R_f = 100\\,\\mathrm{k}\\Omega$. Then $A_v = -100/10 = -10$, so a $0.2\\,\\mathrm{V}$ input gives $-2\\,\\mathrm{V}$ at the output."},
+        {"type": "circuit", "snippet": "inverting-opamp",
+         "params": {"R1": "$10\\,\\mathrm{k}\\Omega$", "Rf": "$100\\,\\mathrm{k}\\Omega$"},
+         "caption": "Inverting amplifier with $A_v=-10$"},
+        {"type": "warning", "title": "Common mistake",
+         "body": "Input resistance is $R_1$, not infinite. A small $R_1$ loads the source."}
+      ]
+    },
+    {
+      "heading": "Revision",
+      "blocks": [
+        {"type": "table", "columns": ["Configuration", "Gain", "Phase"],
+         "rows": [["Inverting", "$-R_f/R_1$", "$180^\\circ$"], ["Non-inverting", "$1+R_f/R_1$", "$0^\\circ$"]]},
+        {"type": "summary", "points": ["Gain set only by the resistor ratio.", "Inverting input is a virtual ground.", "Output is $180^\\circ$ out of phase."]},
+        {"type": "check", "questions": ["What is $A_v$ if $R_f = 47\\,\\mathrm{k}\\Omega$, $R_1 = 4.7\\,\\mathrm{k}\\Omega$?", "Why is the inverting node called a virtual ground?"]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+\begin{circuitikz}
+  \draw (0,0) node[above]{$V_\mathrm{in}$} to[short, o-] ++(0,-0.4)
+        to[R, l_=<<R1>>] ++(0,-2.4) coordinate(tap)
+        to[R, l_=<<R2>>] ++(0,-2.4) node[ground]{};
+  \draw (tap) to[short, *-o] ++(2,0) node[right]{$V_\mathrm{out}$};
+\end{circuitikz}
