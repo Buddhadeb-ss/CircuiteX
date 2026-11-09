@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Passive First-Order RC Filters",
-    "subject": "Circuit Theory & Network Analysis",
+    "subject": "Circuit Theory and Network Analysis",
     "author": "Buddhadeb",
     "references": ["alexander-sadiku"]
   },
@@ -22,7 +22,7 @@
         },
         {
           "type": "formula",
-          "title": "Cutoff Frequency & Transfer Function",
+          "title": "Cutoff Frequency and Transfer Function",
           "tex": "f_c = \\frac{1}{2\\pi R C}, \\qquad H_{LP}(j\\omega) = \\frac{1}{1 + j\\omega R C}",
           "note": "At cutoff frequency $\\omega_c = 1/(RC)$, the gain is $-3\\,\\mathrm{dB}$ ($1/\\sqrt{2} \\approx 0.707$) and phase shift is $-45^\\circ$."
         }
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "heading": "Summary & Quick Check",
+      "heading": "Summary and Quick Check",
       "blocks": [
         {
           "type": "summary",

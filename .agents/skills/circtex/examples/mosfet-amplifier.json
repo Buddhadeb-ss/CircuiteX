@@ -7,7 +7,7 @@
   },
   "sections": [
     {
-      "heading": "Circuit Architecture & Operation",
+      "heading": "Circuit Architecture and Operation",
       "blocks": [
         {
           "type": "definition",
@@ -50,13 +50,13 @@
         },
         {
           "type": "warning",
-          "title": "Saturation Constraint & Clipping",
+          "title": "Saturation Constraint and Clipping",
           "body": "Ensure the DC drain voltage satisfies $V_D > V_G - V_{th}$ at all times. A large output negative swing can push the transistor out of saturation into the triode region, causing severe harmonic distortion."
         }
       ]
     },
     {
-      "heading": "Summary & Quick Check",
+      "heading": "Summary and Quick Check",
       "blocks": [
         {
           "type": "table",

@@ -5,7 +5,7 @@ Usage: python build.py note.json [--out DIR] [--no-pdf] [--check]
 Validates against spec/note-schema.json, library/circuits.json, library/sources.json.
 Prints a short list of problems, or the output paths. No chatter.
 """
-import argparse, datetime, json, re, subprocess, sys
+import argparse, datetime, json, re, shutil, subprocess, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -14,6 +14,18 @@ load = lambda p: json.loads((ROOT / p).read_text(encoding="utf-8"))
 
 def fill(template, values):
     return re.sub(r"<<(\w+)>>", lambda m: str(values.get(m.group(1), "")), template)
+
+
+def find_latex_compiler():
+    if shutil.which("pdflatex"):
+        return "pdflatex"
+    if shutil.which("tectonic"):
+        return "tectonic"
+    # Check Antigravity / user bin for standalone tectonic
+    local_bin = Path.home() / ".gemini" / "bin" / ("tectonic.exe" if sys.platform == "win32" else "tectonic")
+    if local_bin.exists():
+        return str(local_bin)
+    return None
 
 
 # ---------- block renderers (add new block types here + in note-schema.json) ----------
@@ -188,27 +200,39 @@ def build(spec_path, out_dir=".", compile_pdf=True, check_only=False):
     if not compile_pdf:
         print(tex); return 0
 
-    for _ in range(2):
-        try:
-            r = subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name],
-                               cwd=out, capture_output=True, text=True)
-        except FileNotFoundError:
-            print("LATEX ERRORS:\n  'pdflatex' executable was not found in PATH.")
-            print(f"  LaTeX file generated successfully: {tex}")
-            print("  Install a LaTeX distribution (MiKTeX on Windows, MacTeX on macOS, or texlive on Linux) to compile PDFs, or use --no-pdf.")
-            return 1
+    compiler = find_latex_compiler()
+    if not compiler:
+        print("LATEX ERRORS:\n  No LaTeX compiler (pdflatex or tectonic) was found.")
+        print(f"  LaTeX file generated successfully: {tex}")
+        print("  Install MiKTeX / TeX Live or Tectonic to compile PDFs, or use --no-pdf.")
+        return 1
 
+    if "tectonic" in compiler.lower():
+        # Tectonic single-pass compiler
+        r = subprocess.run([compiler, tex.name], cwd=out, capture_output=True, text=True)
         if r.returncode != 0:
-            log = (out / f"{stem}.log").read_text(errors="ignore").splitlines()
-            hits = [i for i, l in enumerate(log) if l.startswith("!")][:3]
             print("LATEX ERRORS:")
-            for i in hits:
-                print("  " + " | ".join(x.strip() for x in log[i:i + 3] if x.strip()))
-            print(f"(full log: {out / (stem + '.log')})")
+            for line in r.stderr.splitlines()[:5]:
+                print(f"  {line}")
             return 1
-    for ext in ("aux", "log", "out"):
-        (out / f"{stem}.{ext}").unlink(missing_ok=True)
-    print(out / f"{stem}.pdf")
+    else:
+        # Standard pdflatex (run twice for cross-refs)
+        for _ in range(2):
+            r = subprocess.run([compiler, "-interaction=nonstopmode", "-halt-on-error", tex.name],
+                               cwd=out, capture_output=True, text=True)
+            if r.returncode != 0:
+                log = (out / f"{stem}.log").read_text(errors="ignore").splitlines()
+                hits = [i for i, l in enumerate(log) if l.startswith("!")][:3]
+                print("LATEX ERRORS:")
+                for i in hits:
+                    print("  " + " | ".join(x.strip() for x in log[i:i + 3] if x.strip()))
+                print(f"(full log: {out / (stem + '.log')})")
+                return 1
+        for ext in ("aux", "log", "out"):
+            (out / f"{stem}.{ext}").unlink(missing_ok=True)
+
+    pdf_out = out / f"{stem}.pdf"
+    print(pdf_out)
     return 0
 
 

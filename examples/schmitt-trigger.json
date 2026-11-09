@@ -7,7 +7,7 @@
   },
   "sections": [
     {
-      "heading": "Hysteresis & Threshold Levels",
+      "heading": "Hysteresis and Threshold Levels",
       "blocks": [
         {
           "type": "definition",
@@ -41,13 +41,13 @@
         },
         {
           "type": "warning",
-          "title": "Op-Amp Slew Rate & Recovery",
+          "title": "Op-Amp Slew Rate and Recovery",
           "body": "Because the op-amp operates in full saturation, recovery time from saturation adds delay. For high-frequency waveform generation or fast clock recovery, use a dedicated comparator IC (e.g. LM311 or LM393) rather than a general-purpose op-amp."
         }
       ]
     },
     {
-      "heading": "Summary & Self-Assessment",
+      "heading": "Summary and Self-Assessment",
       "blocks": [
         {
           "type": "table",
