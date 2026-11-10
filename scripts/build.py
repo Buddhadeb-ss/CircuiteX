@@ -127,9 +127,9 @@ def r_table(b, ctx):
         rendered_rows.append(" & ".join(cells) + r" \\")
     rows_str = "\n".join(rendered_rows)
     cap = escape_latex_prose(b['caption']) if b.get('caption') else ""
-    cap_tex = f"\\captionof{{table}}{{{cap}}}\n" if cap else ""
-    return (f"\\begin{{center}}\n{cap_tex}\\begin{{tabular}}{{{'l' * len(cols)}}}\n\\toprule\n"
-            f"{head} \\\\\n\\midrule\n{rows_str}\n\\bottomrule\n\\end{{tabular}}\n\\end{{center}}\n")
+    cap_tex = f"\\captionof{{table}}{{{cap}}}\n\\vspace{{0.4em}}\n" if cap else ""
+    return (f"\\noindent\\begin{{minipage}}{{\\linewidth}}\n\\centering\n{cap_tex}\\begin{{tabular}}{{{'l' * len(cols)}}}\n\\toprule\n"
+            f"{head} \\\\\n\\midrule\n{rows_str}\n\\bottomrule\n\\end{{tabular}}\n\\end{{minipage}}\n\\vspace{{0.8em}}\n")
 
 
 def r_circuit(b, ctx):
@@ -146,7 +146,7 @@ def r_circuit(b, ctx):
         body = f"\\begin{{circuitikz}}{scale_opt}\n{b['custom']}\n\\end{{circuitikz}}"
         cap = escape_latex_prose(b.get("caption", ""))
     cap_tex = f"\\captionof{{figure}}{{{cap}}}\n" if cap else ""
-    return f"\\begin{{center}}\n{body}\n\n{cap_tex}\\end{{center}}\n"
+    return f"\\noindent\\begin{{minipage}}{{\\linewidth}}\n\\centering\n{body}\n\n{cap_tex}\\end{{minipage}}\n\\vspace{{0.8em}}\n"
 
 
 def r_code(b, ctx):

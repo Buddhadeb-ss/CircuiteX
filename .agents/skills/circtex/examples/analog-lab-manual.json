@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "title": "Analog Electronics Laboratory Manual",
+    "subject": "ECE 302 - Electronic Circuits and Systems Laboratory",
+    "author": "Department of Electronics and Communication Engineering",
+    "date": "Academic Year 2026-2027",
+    "references": ["sedra-smith", "mancini-opamps", "razavi-analog", "alexander-sadiku", "horowitz-hill"]
+  },
+  "sections": [
+    {
+      "heading": "Experiment 1: RC-Coupled Single-Stage BJT Amplifier",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To design, assemble, and test a single-stage RC-coupled common-emitter BJT amplifier, establish its DC operating point ($Q$-point), measure the midband voltage gain $A_v$, and plot the frequency response curve to determine the 3 dB bandwidth."
+        },
+        {
+          "type": "circuit",
+          "snippet": "common-emitter",
+          "params": {
+            "R1": "$47\\,\\mathrm{k}\\Omega$",
+            "R2": "$10\\,\\mathrm{k}\\Omega$",
+            "RC": "$4.7\\,\\mathrm{k}\\Omega$",
+            "RE": "$1\\,\\mathrm{k}\\Omega$",
+            "Cin": "$10\\,\\mu\\mathrm{F}$"
+          },
+          "scale": 0.85,
+          "caption": "Single-stage RC-coupled common-emitter BJT amplifier with voltage-divider biasing"
+        },
+        {
+          "type": "formula",
+          "title": "Voltage Gain and Cutoff Frequencies",
+          "tex": "A_v = -\\frac{g_m (R_C \\parallel R_L)}{1 + g_m R_{E1}} \\approx -\\frac{R_C \\parallel R_L}{r_e}, \\qquad f_L = \\frac{1}{2\\pi (R_s + R_\\mathrm{in}) C_\\mathrm{in}}, \\qquad f_H = \\frac{1}{2\\pi R_\\mathrm{th} C_\\mathrm{tot}}",
+          "note": "Where $r_e = V_T / I_E \\approx 26\\,\\mathrm{mV} / I_E$ at room temperature, and bandwidth is $BW = f_H - f_L$."
+        },
+        {
+          "type": "list",
+          "title": "Components and Equipment Required",
+          "ordered": true,
+          "items": [
+            "Transistor: BC547 or 2N2222 NPN BJT (1 pc)",
+            "Resistors: 47 kOhm, 10 kOhm, 4.7 kOhm, 1 kOhm, 100 Ohm (0.25 W)",
+            "Capacitors: 10 uF (coupling), 100 uF (emitter bypass)",
+            "Power Supply: Regulated Dual DC Power Supply (0-30 V)",
+            "Function Generator: 10 Hz - 1 MHz sinusoidal source",
+            "Digital Storage Oscilloscope (DSO): 50 MHz dual channel"
+          ]
+        },
+        {
+          "type": "table",
+          "caption": "Observation Table: Frequency Response Measurement (Vin = 20 mV peak-to-peak)",
+          "columns": ["Frequency (Hz)", "V_in (mV)", "V_out (V)", "Voltage Gain A_v", "Gain in dB (20 log A_v)"],
+          "rows": [
+            ["20 Hz", "20", "0.22", "11.0", "20.8 dB"],
+            ["100 Hz", "20", "0.95", "47.5", "33.5 dB"],
+            ["1 kHz", "20", "1.52", "76.0", "37.6 dB (Midband)"],
+            ["10 kHz", "20", "1.52", "76.0", "37.6 dB (Midband)"],
+            ["100 kHz", "20", "1.10", "55.0", "34.8 dB"],
+            ["1 MHz", "20", "0.32", "16.0", "24.1 dB"]
+          ]
+        },
+        {
+          "type": "warning",
+          "title": "Lab Precaution",
+          "body": "Keep the input test signal below 30 mV peak-to-peak to avoid non-linear transistor distortion and hard clipping at the collector rail."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 2: Voltage-Series Feedback Amplifier",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To analyze the effect of negative voltage-series feedback on voltage gain stabilization, input impedance increase, output impedance reduction, and bandwidth extension using an operational amplifier configuration."
+        },
+        {
+          "type": "circuit",
+          "snippet": "noninverting-opamp",
+          "params": {
+            "R1": "$1\\,\\mathrm{k}\\Omega$",
+            "Rf": "$9\\,\\mathrm{k}\\Omega$"
+          },
+          "scale": 0.85,
+          "caption": "Voltage-series negative feedback amplifier (closed-loop gain A_vf = 10)"
+        },
+        {
+          "type": "formula",
+          "title": "Feedback Factor and Closed-Loop Properties",
+          "tex": "\\beta = \\frac{R_1}{R_1 + R_f}, \\qquad A_{vf} = \\frac{A}{1 + A\\beta} \\approx \\frac{1}{\\beta} = 1 + \\frac{R_f}{R_1}, \\qquad R_{in,f} = R_{in}(1 + A\\beta), \\qquad R_{out,f} = \\frac{R_{out}}{1 + A\\beta}",
+          "note": "Negative feedback trades gain for stability, linearity, higher input impedance, and expanded bandwidth."
+        },
+        {
+          "type": "table",
+          "caption": "Comparison of Open-Loop vs. Closed-Loop Performance",
+          "columns": ["Parameter", "Open-Loop", "Closed-Loop (Feedback)", "Measured Result"],
+          "rows": [
+            ["Voltage Gain A_v", "100,000", "10.0", "9.94 V/V"],
+            ["Input Resistance", "2 MOhm", "> 100 MOhm", "> 50 MOhm"],
+            ["Output Resistance", "75 Ohm", "< 0.1 Ohm", "< 0.5 Ohm"],
+            ["Bandwidth (-3 dB)", "10 Hz", "100 kHz", "98.5 kHz"]
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 3: RC Phase-Shift Oscillator",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To construct an audio-frequency RC phase-shift oscillator using an op-amp, observe self-sustained sinusoidal oscillations without external input, and verify the Barkhausen criterion."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[op amp] (A) {};\\draw (A.+) -- ++(-0.4,0) node[ground]{};\\draw (A.-) to[short, *-] ++(-0.8,0) coordinate(inv) to[R=$R_1$, -*] ++(-1.8,0) coordinate(fb_in);\\draw (inv) -- ++(0,1.6) coordinate(top) to[R=$R_f$] (top -| A.out) -- (A.out);\\draw (A.out) to[short, *-o] ++(1.0,0) coordinate(out_node) node[right]{$V_\\mathrm{out}$};\\draw (out_node) -- ++(0,-1.8) coordinate(bus) to[C=$C$] ++(-1.6,0) coordinate(c1) to[C=$C$] ++(-1.6,0) coordinate(c2) to[C=$C$] ++(-1.6,0) coordinate(c3) -- (fb_in |- c3) -- (fb_in);\\draw (c1) to[R=$R$] ++(0,-1.6) node[ground]{};\\draw (c2) to[R=$R$] ++(0,-1.6) node[ground]{};\\draw (c3) to[R=$R$] ++(0,-1.6) node[ground]{};",
+          "scale": 0.8,
+          "caption": "Op-amp RC phase-shift oscillator with 3-stage lead network"
+        },
+        {
+          "type": "formula",
+          "title": "Frequency of Oscillation and Gain Condition",
+          "tex": "f_0 = \\frac{1}{2\\pi R C \\sqrt{6}}, \\qquad |A_v| = \\frac{R_f}{R_1} \\ge 29",
+          "note": "Each RC section produces a 60 degree phase shift at f_0. The 3 sections total 180 degrees, matching the inverting op-amp's 180 degrees to meet loop phase shift = 360 degrees."
+        },
+        {
+          "type": "example",
+          "title": "Design for f0 = 1 kHz",
+          "body": "Choose $C = 10\\,\\mathrm{nF}$. Then $R = \\frac{1}{2\\pi f_0 C \\sqrt{6}} = \\frac{1}{2\\pi (1000)(10\\times 10^{-9}) \\sqrt{6}} \\approx 6.49\\,\\mathrm{k}\\Omega$ (use $6.8\\,\\mathrm{k}\\Omega$ standard). Choose $R_1 = 10\\,\\mathrm{k}\\Omega$ and $R_f \\ge 29 R_1 = 330\\,\\mathrm{k}\\Omega$ potentiometer for startup."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 4: Colpitts and Crystal Oscillators",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To construct an LC Colpitts oscillator for radio frequencies and a quartz crystal oscillator for high frequency-stability clock generation."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[npn] (Q) {};\\draw (Q.C) to[L=$L_\\mathrm{choke}$] ++(0,2.0) coordinate(vcc) node[vcc]{$V_{CC}$};\\draw (Q.E) to[R=$R_E$] ++(0,-1.8) node[ground]{};\\draw (Q.B) -- ++(-0.6,0) coordinate(b);\\draw (b) to[R=$R_1$] (b |- vcc) -- (vcc);\\draw (b) to[R=$R_2$] ++(0,-2.2) node[ground]{};\\draw (Q.C) to[short, *-] ++(1.4,0) coordinate(c_tap) to[C=$C_1$] ++(0,-1.8) coordinate(tank_mid) to[C=$C_2$] ++(0,-1.8) node[ground]{};\\draw (tank_mid) node[circ]{} to[short] ++(1.2,0) to[L=$L$] ++(0,3.6) -| (c_tap);\\draw (tank_mid) -| ++(-2.4,-0.8) -| (Q.E);\\draw (c_tap) to[short, *-o] ++(2.4,0) node[right]{$V_\\mathrm{out}$};",
+          "scale": 0.78,
+          "caption": "BJT Colpitts LC oscillator with split-capacitor feedback tank"
+        },
+        {
+          "type": "formula",
+          "title": "Colpitts Resonance Frequency",
+          "tex": "f_0 = \\frac{1}{2\\pi \\sqrt{L C_\\mathrm{eq}}}, \\qquad C_\\mathrm{eq} = \\frac{C_1 C_2}{C_1 + C_2}, \\qquad \\beta = \\frac{C_1}{C_2}",
+          "note": "For crystal oscillator, replace tank inductor with a quartz crystal operating in its parallel resonant inductive region."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 5: N-Channel Depletion-Type MOSFET Biasing",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To investigate the $I_D$-$V_{GS}$ transfer characteristics of an N-channel depletion-mode MOSFET, verifying conduction in both depletion ($V_{GS} < 0$) and enhancement ($V_{GS} > 0$) modes, and establish zero-bias and self-bias operating points."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[nmos] (M) {};\\draw (M.D) to[R=$R_D$] ++(0,1.8) coordinate(vdd) node[vcc]{$V_{DD}$};\\draw (M.S) to[R=$R_S$] ++(0,-1.8) coordinate(gnd) node[ground]{};\\draw (M.G) to[short] ++(-0.8,0) coordinate(g);\\draw (g) to[R=$R_G$] (g |- gnd) node[ground]{};\\draw (M.D) to[short, *-o] ++(1.0,0) node[right]{$V_D$};\\draw (M.S) to[short, *-o] ++(1.0,0) node[right]{$V_S$};",
+          "scale": 0.75,
+          "caption": "Self-biased depletion-mode MOSFET circuit (V_GS = -I_D * R_S)"
+        },
+        {
+          "type": "formula",
+          "title": "Shockley's Drain Current Equation",
+          "tex": "I_D = I_{DSS} \\left(1 - \\frac{V_{GS}}{V_P}\\right)^2, \\qquad V_{GS} = -I_D R_S",
+          "note": "Where I_DSS is saturation drain current at V_GS = 0, and V_P is the negative pinch-off threshold voltage."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 6: Power Amplifiers (Class A and Class AB Push-Pull)",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To evaluate the power conversion efficiency, maximum unclipped output power, and crossover distortion characteristics of Class A and complementary symmetry Class AB push-pull power amplifiers."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,1.2) node[npn] (Q1) {} node[right=0.25cm]{NPN};\\draw (0,-1.2) node[pnp] (Q2) {} node[right=0.25cm]{PNP};\\draw (Q1.E) -- (Q2.E);\\path (Q1.E) -- (Q2.E) coordinate[midway] (e_mid);\\draw (e_mid) node[circ]{} to[short, *-o] ++(1.4,0) coordinate(out_node) to[R=$R_L$] ++(0,-1.5) node[ground]{};\\draw (out_node) node[above]{$V_\\mathrm{out}$};\\draw (Q1.B) to[D=$D_1$] ++(0,-1.2) coordinate(d_mid) to[D=$D_2$] (Q2.B);\\draw (d_mid) node[circ]{} to[C=$C_\\mathrm{in}$, -o] ++(-1.4,0) node[left]{$V_\\mathrm{in}$};\\draw (Q1.C) -- ++(0,0.5) coordinate(vcc_top) node[vcc]{$+V_{CC}$};\\draw (Q1.B) to[R, l_=$R_1$] (Q1.B |- vcc_top) -- (vcc_top);\\draw (Q2.C) -- ++(0,-0.5) coordinate(vee_bot) node[vee]{$-V_{EE}$};\\draw (Q2.B) to[R, l_=$R_2$] (Q2.B |- vee_bot) -- (vee_bot);",
+          "scale": 0.8,
+          "caption": "Complementary symmetry Class AB push-pull power amplifier with diode bias"
+        },
+        {
+          "type": "formula",
+          "title": "Theoretical Power Efficiency",
+          "tex": "\\eta_\\mathrm{Class\\,A} = \\frac{P_{L,\\mathrm{ac}}}{P_{DC}} \\le 25\\% \\text{ (series-fed)}, \\qquad \\eta_\\mathrm{Class\\,AB} = \\frac{\\pi}{4} \\left(\\frac{V_p}{V_{CC}}\\right) \\le 78.5\\%",
+          "note": "Diode voltage drops match V_BE drops of Q1 and Q2, eliminating the deadband and crossover distortion."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 7: Schmitt Trigger with Adjustable Hysteresis",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To construct an inverting op-amp Schmitt trigger, observe waveform squaring from a noisy sinusoidal input, measure upper and lower threshold voltages (V_TH, V_TL), and plot the hysteresis loop."
+        },
+        {
+          "type": "circuit",
+          "snippet": "schmitt-trigger",
+          "params": {
+            "R1": "$10\\,\\mathrm{k}\\Omega$",
+            "R2": "$47\\,\\mathrm{k}\\Omega$"
+          },
+          "scale": 0.85,
+          "caption": "Inverting Schmitt trigger with positive feedback"
+        },
+        {
+          "type": "formula",
+          "title": "Switching Thresholds and Hysteresis Width",
+          "tex": "V_{TH} = +\\frac{R_1}{R_1 + R_2} V_\\mathrm{sat}^+, \\qquad V_{TL} = -\\frac{R_1}{R_1 + R_2} |V_\\mathrm{sat}^-|, \\qquad V_H = V_{TH} - V_{TL} = \\frac{2 R_1}{R_1 + R_2} V_\\mathrm{sat}",
+          "note": "With V_sat = 12 V, R1 = 10 kOhm, R2 = 47 kOhm: V_TH = +2.1 V, V_TL = -2.1 V, and V_H = 4.2 V."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 8: Active Low-Pass Filter (Sallen-Key Second-Order)",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To design and test an active second-order Sallen-Key low-pass Butterworth filter, measure the -40 dB/decade stopband roll-off slope, and verify cutoff frequency."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[op amp] (A) {};\\draw (A.out) to[short, *-] ++(0,1.8) coordinate(fb_top) -| (A.-);\\draw (A.out) to[short, *-o] ++(1.2,0) node[right]{$V_\\mathrm{out}$};\\draw (A.+) to[short] ++(-0.6,0) coordinate(pos_in);\\draw (pos_in) to[R=$R_2$, *-] ++(-2.0,0) coordinate(mid_node) to[R=$R_1$, -o] ++(-2.0,0) node[left]{$V_\\mathrm{in}$};\\draw (pos_in) to[C=$C_2$] ++(0,-1.8) node[ground]{};\\draw (mid_node) to[C=$C_1$] (mid_node |- fb_top) -- (fb_top);",
+          "scale": 0.85,
+          "caption": "Second-order active Sallen-Key low-pass filter (Butterworth response)"
+        },
+        {
+          "type": "formula",
+          "title": "Cutoff Frequency and Damping",
+          "tex": "f_c = \\frac{1}{2\\pi \\sqrt{R_1 R_2 C_1 C_2}} = \\frac{1}{2\\pi R C} \\quad (\\text{for } R_1=R_2=R, C_1=C_2=C), \\qquad Q = 0.707 \\text{ (Butterworth)}",
+          "note": "Provides flat passband response (maximally flat magnitude) and steep -40 dB/decade attenuation."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 9: Active Band-Pass Filter (Multiple Feedback MFB)",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To construct a multiple-feedback (MFB) active band-pass filter, measure the center resonance frequency f0, 3 dB bandwidth, and quality factor Q."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[op amp] (A) {};\\draw (A.+) -- ++(-0.4,0) node[ground]{};\\draw (A.-) to[short, *-] ++(-0.6,0) coordinate(inv);\\draw (inv) to[R=$R_2$] (inv |- 0,1.8) coordinate(top) -- (top -| A.out) to[short] (A.out);\\draw (inv) to[C, l^=$C_2$] ++(-1.8,0) coordinate(center);\\draw (center) to[R=$R_1$, -o] ++(-1.8,0) node[left]{$V_\\mathrm{in}$};\\draw (center) to[C, l^=$C_1$] (center |- top) -- (top);\\draw (center) to[R, l_=$R_3$] ++(0,-1.8) node[ground]{};\\draw (A.out) to[short, *-o] ++(1.0,0) node[right]{$V_\\mathrm{out}$};",
+          "scale": 0.82,
+          "caption": "Infinite-gain multiple-feedback (MFB) active band-pass filter"
+        },
+        {
+          "type": "formula",
+          "title": "Center Frequency and Quality Factor",
+          "tex": "f_0 = \\frac{1}{2\\pi C} \\sqrt{\\frac{R_1 + R_3}{R_1 R_2 R_3}}, \\qquad Q = \\pi f_0 C R_2, \\qquad B = \\frac{f_0}{Q}",
+          "note": "Assuming equal capacitors C1 = C2 = C. Midband center gain is A_0 = -R2 / (2 R1)."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 10: Twin-T Active Notch Filter",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To construct an active Twin-T notch filter to reject 50 Hz power-line interference, measure the depth of notch attenuation (null rejection in dB), and determine the rejection bandwidth."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[op amp] (A) {};\\draw (A.out) to[short, *-] ++(0,1.6) coordinate(top) -| (A.-);\\draw (A.out) to[short, *-o] ++(1.0,0) node[right]{$V_\\mathrm{out}$};\\draw (A.+) to[short] ++(-0.5,0) coordinate(p_in);\\draw (p_in) ++(-3.6,0) coordinate(vin_node) node[left]{$V_\\mathrm{in}$} node[circ]{};\\draw (vin_node) to[short, o-] ++(0.4,0) coordinate(t_top_in) to[R=$R$, -*] ++(1.4,0) coordinate(t1) to[R=$R$] (p_in);\\draw (t1) to[C=$2C$] ++(0,-1.4) node[ground]{};\\draw (vin_node) to[short] ++(0,-2.0) coordinate(t_bot_in) to[C=$C$, -*] (t_bot_in -| t1) coordinate(t2) to[C=$C$] ++(1.4,0) -| (p_in);\\draw (t2) to[R=$R/2$] ++(0,-1.4) node[ground]{};",
+          "scale": 0.8,
+          "caption": "Twin-T active notch (band-reject) filter for 50 Hz hum elimination"
+        },
+        {
+          "type": "formula",
+          "title": "Notch Null Frequency",
+          "tex": "f_0 = \\frac{1}{2\\pi R C}, \\qquad \\text{Null Attenuation} \\ge 40\\,\\mathrm{dB}",
+          "note": "At f0, the parallel low-pass (R-R-2C) and high-pass (C-C-R/2) networks deliver equal magnitude signals with 180 degree phase difference, completely cancelling the output."
+        }
+      ]
+    },
+    {
+      "heading": "Experiment 11: R-2R Ladder Type Digital-to-Analog Converter (DAC)",
+      "blocks": [
+        {
+          "type": "definition",
+          "title": "Aim of the Experiment",
+          "body": "To build and verify a 4-bit binary weighted R-2R ladder digital-to-analog converter using an op-amp summing stage, measure analog output for all 16 digital input states (0000 to 1111), and determine resolution and linearity."
+        },
+        {
+          "type": "circuit",
+          "custom": "\\draw (0,0) node[op amp] (A) {};\\draw (A.+) -- ++(-0.4,0) node[ground]{};\\draw (A.-) to[short, *-] ++(-0.8,0) coordinate(inv);\\draw (inv) -- ++(0,1.6) coordinate(top) to[R=$2R$] (top -| A.out) -- (A.out);\\draw (A.out) to[short, *-o] ++(1.0,0) node[right]{$V_\\mathrm{out}$};\\draw (inv) to[short] ++(-0.8,0) coordinate(n3) to[R=$R$] ++(-1.6,0) coordinate(n2) to[R=$R$] ++(-1.6,0) coordinate(n1) to[R=$R$] ++(-1.6,0) coordinate(n0);\\draw (n3) to[R=$2R$, *-o] ++(0,-1.8) node[below]{$B_3$ (MSB)};\\draw (n2) to[R=$2R$, *-o] ++(0,-1.8) node[below]{$B_2$};\\draw (n1) to[R=$2R$, *-o] ++(0,-1.8) node[below]{$B_1$};\\draw (n0) to[R=$2R$, *-o] ++(0,-1.8) node[below]{$B_0$ (LSB)};\\draw (n0) to[R=$2R$] ++(-1.6,0) node[ground]{};",
+          "scale": 0.78,
+          "caption": "4-bit binary R-2R ladder digital-to-analog converter (DAC) circuit"
+        },
+        {
+          "type": "formula",
+          "title": "Analog Output Voltage and Resolution",
+          "tex": "V_\\mathrm{out} = -V_\\mathrm{ref} \\left(\\frac{B_3}{2^1} + \\frac{B_2}{2^2} + \\frac{B_1}{2^3} + \\frac{B_0}{2^4}\\right) = -\\frac{V_\\mathrm{ref}}{16} \\sum_{i=0}^{3} B_i 2^i, \\qquad \\text{Step Size} = \\frac{V_\\mathrm{ref}}{2^n} = \\frac{5\\,\\mathrm{V}}{16} = 0.3125\\,\\mathrm{V}",
+          "note": "Only two resistor values (R and 2R) are required, avoiding the extreme resistor ratio tolerances of binary-weighted DACs."
+        },
+        {
+          "type": "table",
+          "caption": "4-Bit DAC Digital Input to Analog Output Truth Table (Vref = +5.0 V)",
+          "columns": ["Digital Input", "Decimal", "V_calc (V)", "V_meas (V)", "Error (mV)"],
+          "rows": [
+            ["0000", "0", "0.000 V", "0.002 V", "+2 mV"],
+            ["0001 (LSB)", "1", "-0.313 V", "-0.310 V", "+3 mV"],
+            ["0010", "2", "-0.625 V", "-0.621 V", "+4 mV"],
+            ["0100", "4", "-1.250 V", "-1.248 V", "+2 mV"],
+            ["1000 (MSB)", "8", "-2.500 V", "-2.495 V", "+5 mV"],
+            ["1111 (FS)", "15", "-4.688 V", "-4.680 V", "+8 mV"]
+          ]
+        },
+        {
+          "type": "summary",
+          "points": [
+            "The R-2R ladder requires only two precision resistor values regardless of bit count n.",
+            "Output impedance looking into any node of the ladder is always constant and equal to R.",
+            "Settling time is primarily limited by the slew rate and bandwidth of the summing op-amp."
+          ]
+        },
+        {
+          "type": "check",
+          "questions": [
+            "What is the full-scale output voltage of an 8-bit R-2R DAC with Vref = 5 V?",
+            "Why is the R-2R ladder vastly superior to binary-weighted resistor DACs for integrated circuits?"
+          ]
+        }
+      ]
+    }
+  ]
+}
