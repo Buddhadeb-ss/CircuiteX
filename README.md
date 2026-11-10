@@ -4,8 +4,11 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Antigravity Skill](https://img.shields.io/badge/Antigravity-Skill%20Ready-purple.svg)](https://github.com/Buddhadeb-ss/CircuiteX)
 [![Tests Passing](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
+[![Tutorial](https://img.shields.io/badge/Tutorial-Step--by--Step%20Guide-green.svg)](TUTORIAL.md)
 
 > **Publication-quality LaTeX study notes and Circuitikz schematics compiler for AI coding assistants and ECE students.**
+
+> 📖 **New to CircuiteX? Read the comprehensive [TUTORIAL.md](TUTORIAL.md) for step-by-step guides on custom circuits, digital decoders, and adding new circuits!**
 
 ---
 

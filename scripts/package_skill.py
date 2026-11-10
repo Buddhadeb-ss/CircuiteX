@@ -19,6 +19,9 @@ def package_skill(output_path=None):
 
     files_to_pack = [
         "SKILL.md",
+        "README.md",
+        "TUTORIAL.md",
+        "LICENSE",
         "plugin.json",
         "spec/note-schema.json",
         "spec/theme.json",
