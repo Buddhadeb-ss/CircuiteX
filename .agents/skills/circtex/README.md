@@ -1,6 +1,6 @@
 # CircuiteX (circtex)
 
-[![License: Non-Commercial Dual](https://img.shields.io/badge/License-NonCommercial%20%2F%20Dual-orange.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Antigravity Skill](https://img.shields.io/badge/Antigravity-Skill%20Ready-purple.svg)](https://github.com/Buddhadeb-ss/CircuiteX)
 [![Tests Passing](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
@@ -211,12 +211,7 @@ This produces `circtex.skill` containing all 20 circuits, schemas, templates, bu
 
 ---
 
-## 📄 License & Commercial Terms
+## 📄 License
 
-CircuiteX is released under a **Source-Available Non-Commercial & Dual License**:
-
-- **Free for Non-Commercial & Educational Use:** Free to use, study, fork, modify, and generate notes for students, researchers, teachers, universities, and individual non-monetized projects.
-- **Commercial Use & Royalties ("If you earn, I earn too"):** Any commercial use—including selling the software, bundling it with paid commercial products/SaaS, publishing paid courses/books, or using it in revenue-generating commercial platforms—requires an explicit Commercial License with revenue-sharing or royalties.
-- For commercial licensing inquiries, contact [Buddhadeb Banik](mailto:buddhadebbanik96@gmail.com).
-
-See [LICENSE](LICENSE) for the full legal text.
+This project is open-source under the [MIT License](LICENSE).
+Contributions, circuit submissions, and improvements are welcome!

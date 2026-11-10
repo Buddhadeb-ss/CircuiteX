@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Publication-quality LaTeX study notes and circuitikz schematics compiler for ECE students and engineers.",
   "author": "Buddhadeb",
-  "license": "Non-Commercial / Dual Commercial",
+  "license": "MIT",
   "repository": "https://github.com/Buddhadeb-ss/CircuiteX",
   "suggestedPrompts": [
     "Create LaTeX study notes for an inverting op-amp amplifier with circuit schematic",
