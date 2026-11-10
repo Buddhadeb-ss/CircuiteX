@@ -49,3 +49,4 @@ def test_every_circuit_compiles_to_pdf(tmp_path, circuits_registry):
         pdf_out = tmp_path / f"test_{cid}.pdf"
         assert pdf_out.exists(), f"PDF not generated for '{cid}'"
         assert pdf_out.stat().st_size > 5000, f"PDF file size too small for '{cid}'"
+

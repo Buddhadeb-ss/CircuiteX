@@ -43,3 +43,4 @@ def test_escape_prose_preserves_already_escaped():
 def test_escape_prose_display_math():
     res = escape_latex_prose(r"Formula for 50% case: \[ A_v = \frac{R_f}{R_1} \] end_of_formula")
     assert res == r"Formula for 50\% case: \[ A_v = \frac{R_f}{R_1} \] end\_of\_formula"
+
